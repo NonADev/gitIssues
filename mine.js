@@ -5,8 +5,10 @@ const user = "apache";
 const repository = "cordova-android";
 const fetch = require("node-fetch"); 
 let pages = 0;
-let restUrl = `https://api.github.com/repos/${user}/${repository}/issues?page=`;
 let i = 0;
+let userRep = process.argv[2].substring(19,process.argv[2].length);
+let restUrl = `https://api.github.com/repos/${userRep}/issues?page=`;
+
 async function getIssues(a){
     var resp = await fetch(restUrl+a);
     console.log(restUrl+a);
@@ -23,11 +25,9 @@ async function getIssues(a){
         var resp = await fetch(link);
         return resp.json();
     })().then(function(r){
-        //console.log(Math.ceil(r.total_count/30));
-        pages = Math.ceil(r.total_count/30);
-        console.log(r.total_count);
         getIssues(1).then(function(r){ //getIssues(i).then(function(r){
             if(r.length==0) {
+                console.log(`The repository ${restUrl} has no issues`);
                 return; //working
             }
             for(var i=0;i<r.length;i++){
@@ -46,5 +46,4 @@ async function getIssues(a){
             }
         });
     });
-
 })();
