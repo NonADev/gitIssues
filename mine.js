@@ -11,7 +11,6 @@ if(process.argv[2].charAt(process.argv[2].length-1)=='/'){ //tratamento de last 
 }
 let userRep = process.argv[2].substring(19,process.argv[2].length); //getUrlBy parameter
 let restUrl = `https://api.github.com/repos/${userRep}/issues?page=`; //use url parameter to get the api rest link
-
 if(process.argv[2].substr(0,19)!="https://github.com/"){ //tratamento de 3 parametros que tem que ter o https ao invez de n ter ou ser http
     console.log('The link sended has to be using the "https" protocol. \nExample: https://github.com/apache/cordova-android');
     return;
@@ -48,7 +47,7 @@ let fileToWrite = `./${userRep.replace("/","_")}.csv`;
                 if(element.milestone!=null && 'title' in element.milestone){
                     milestone = element.milestone.milestone; //if true
                 }
-                var data = `"${element.title.replace(/(\r\n|\n|\r)/gm,"")}","${element.body.replace(/(\r\n|\n|\r)/gm,"").replace(/"/g, "'")}","${element.state.replace(/(\r\n|\n|\r)/gm,"")}","${element.number}","${assignee}","${element.labels}","${milestone}"\n`;
+                var data = `"${element.title.replace(/(\r\n|\n|\r)/gm,"")}","${element.body.replace(/(\r\n|\n|\r)/gm,"").replace(/"/g, "'")}","${element.state.replace(/(\r\n|\n|\r)/gm,"")}","${element.number}","${assignee}","${JSON.stringify(element.labels).replace(/"/g, "'")}","${milestone}"\n`;
                 fs.appendFile(fileToWrite, data, (err) => {
                     if(err) {
                         console.log(err);
