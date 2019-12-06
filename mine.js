@@ -26,27 +26,25 @@ async function getIssues(a){
         //console.log(Math.ceil(r.total_count/30));
         pages = Math.ceil(r.total_count/30);
         console.log(r.total_count);
-        //for(i=1;i<=pages;i++){
-            getIssues(1).then(function(r){ //getIssues(i).then(function(r){
-                if(r.length==0) {
-                    return; //working
-                }
-                for(var i=0;i<r.length;i++){
-                    var element = r[i];
-                    var data = `"${element.title.replace(/(\r\n|\n|\r)/gm,"")}","${element.body.replace(/(\r\n|\n|\r)/gm,"")}","${element.state.replace(/(\r\n|\n|\r)/gm,"")}","${element.number}","${element.assign}","${element.labels}","${element.milestone}"\n`;
-                    
-                    fs.appendFile(`./${user}_${repository}.csv`, data, (err) => {
-                        if(err) {
-                            console.log(err);
-                        }
-                        else{
-                            //console.log("Successfully Written to File. :"+data);
-                        }
-                    });
-                    //console.log(`"${element.title.replace(/(\r\n|\n|\r)/gm,"")}","${element.body.replace(/(\r\n|\n|\r)/gm,"")}","${element.state.replace(/(\r\n|\n|\r)/gm,"")}","${element.number}","${element.assign}","${element.labels}","${element.milestone}"`);
-                }
-            });
-        //}
+        getIssues(1).then(function(r){ //getIssues(i).then(function(r){
+            if(r.length==0) {
+                return; //working
+            }
+            for(var i=0;i<r.length;i++){
+                var element = r[i];
+                var data = `"${element.title.replace(/(\r\n|\n|\r)/gm,"")}","${element.body.replace(/(\r\n|\n|\r)/gm,"")}","${element.state.replace(/(\r\n|\n|\r)/gm,"")}","${element.number}","${element.assign}","${element.labels}","${element.milestone}"\n`;
+                
+                fs.appendFile(`./${user}_${repository}.csv`, data, (err) => {
+                    if(err) {
+                        console.log(err);
+                    }
+                    else{
+                        //console.log("Successfully Written to File. :"+data);
+                    }
+                });
+                //console.log(`"${element.title.replace(/(\r\n|\n|\r)/gm,"")}","${element.body.replace(/(\r\n|\n|\r)/gm,"")}","${element.state.replace(/(\r\n|\n|\r)/gm,"")}","${element.number}","${element.assign}","${element.labels}","${element.milestone}"`);
+            }
+        });
     });
 
 })();
