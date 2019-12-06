@@ -48,7 +48,7 @@ let fileToWrite = `./${userRep.replace("/","_")}.csv`;
                 if(element.milestone!=null && 'title' in element.milestone){
                     milestone = element.milestone.milestone; //if true
                 }
-                var data = `"${element.title.replace(/(\r\n|\n|\r)/gm,"")}","${element.body.replace(/(\r\n|\n|\r)/gm,"").replace('"', "'")}","${element.state.replace(/(\r\n|\n|\r)/gm,"")}","${element.number}","${assignee}","${element.labels}","${milestone}"\n`;
+                var data = `"${element.title.replace(/(\r\n|\n|\r)/gm,"")}","${element.body.replace(/(\r\n|\n|\r)/gm,"").replace(/"/g, "'")}","${element.state.replace(/(\r\n|\n|\r)/gm,"")}","${element.number}","${assignee}","${element.labels}","${milestone}"\n`;
                 fs.appendFile(fileToWrite, data, (err) => {
                     if(err) {
                         console.log(err);
