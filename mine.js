@@ -35,7 +35,7 @@ let fileToWrite = `./${userRep.replace("/","_")}.csv`;
                 if(element.assignee!=null&&'login' in element.assignee){
                     assignee = element.assignee.login; //if true
                 }
-                if(element.milestone!=null&&'title' in element.assignee){
+                if(element.milestone!=null && 'title' in element.milestone){
                     milestone = element.milestone.milestone; //if true
                 }
                 var data = `"${element.title.replace(/(\r\n|\n|\r)/gm,"")}","${element.body.replace(/(\r\n|\n|\r)/gm,"")}","${element.state.replace(/(\r\n|\n|\r)/gm,"")}","${element.number}","${assignee}","${element.labels}","${milestone}"\n`;
