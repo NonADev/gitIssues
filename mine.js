@@ -16,7 +16,7 @@ if(process.argv[2].substr(0,19)!="https://github.com/"){ //tratamento de 3 param
     return;
 }
 async function getIssues(a){
-    var resp = await fetch(restUrl+a);
+    var resp = await fetch(restUrl+a+"&per_page=100");
     //console.log(restUrl+a);
     return resp.json();
 }
