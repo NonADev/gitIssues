@@ -1,5 +1,5 @@
 # GitIssues
-GitIssues é uma aplicação em node para aquisição de issues de projetos na plataforma github, por meio de sua API rest v3, e salva-los em um arquivo csv.
+GitIssues é uma aplicação em node para aquisição de issues de projetos na plataforma GitHub, por meio de sua API rest v3, e salva-los em um arquivo csv (comma separated values).
 # Requisitos
 Para conseguir usar, é nescessário ter instalado: 
 * node.js.
