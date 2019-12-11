@@ -1,8 +1,8 @@
 "use strict";
 var fs = require("fs");
-const fetch = require("node-fetch"); 
+const fetch = require("node-fetch");
 if(process.argv.length<3){ //tratamento de parametro : tem que ter parametros 3
-    console.log('Aplication usage example: \nnode mine.js https://github.com/apache/cordova-android');
+    console.log('Aplication usage example (need 3 params): \nnode mine.js https://github.com/apache/cordova-android');
     return;
 }
 if(process.argv[2].charAt(process.argv[2].length-1)=='/'){ //tratamento de last char : tem que terminar diferente de '/'
@@ -32,7 +32,7 @@ let fileToWrite = `./${userRep.replace("/","_")}.csv`;
             console.log(err);
         }
     });
-    (async function(){ 
+    (async function(){
         getIssues().then(function(r){ //getIssues(i).then(function(r){
             if(r.message=='Not Found'){
                 console.log(`The repository ${process.argv[2]} do not exists`);
@@ -63,6 +63,6 @@ let fileToWrite = `./${userRep.replace("/","_")}.csv`;
                 });
             }
             console.log(`Successfully Written Issues from http://github.com/${userRep} to file ${fileToWrite}`);
-        });        
+        });
     })();
 })();
